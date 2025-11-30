@@ -1,0 +1,57 @@
+import { Link } from "react-router-dom"; import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+
+const Footer = () => {
+  const footerLinks = { company: [ { name: "About Us", path: "/about" }, { name: "Careers", path: "#" }, { name: "Press", path: "#" }, { name: "Blog", path: "#" } ], customer: [ { name: "Contact", path: "/contact" }, { name: "FAQ", path: "/faq" }, { name: "Shipping Info", path: "#" }, { name: "Returns", path: "#" } ], legal: [ { name: "Privacy Policy", path: "#" }, { name: "Terms of Use", path: "#" }, { name: "Cookie Policy", path: "#" }, { name: "Security", path: "#" } ] };
+  const socialLinks = [ { icon: Facebook, href: "#", label: "Facebook" }, { icon: Twitter, href: "#", label: "Twitter" }, { icon: Instagram, href: "#", label: "Instagram" }, { icon: Youtube, href: "#", label: "YouTube" } ];
+
+  return (
+    <footer className="mt-16 border-t border-purple-300 bg-zinc-100">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          <div>
+            <h2 className="text-2xl font-bold text-purple-600 mb-4">ShopMate</h2>
+            <p className="text-gray-600 mb-6">Your go-to destination for premium online shopping. Explore quality, value, and style in one place.</p>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 text-gray-700"><Mail className="w-5 h-5 text-purple-600" /><span>support@shopmate.com</span></div>
+              <div className="flex items-center space-x-3 text-gray-700"><Phone className="w-5 h-5 text-purple-600" /><span>+1 (555) 123-4567</span></div>
+              <div className="flex items-center space-x-3 text-gray-700"><MapPin className="w-5 h-5 text-purple-600" /><span>San Francisco, CA</span></div>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Company</h3>
+            <ul className="space-y-2">{footerLinks.company.map((link) => (<li key={link.name}><Link to={link.path} className="text-gray-600 hover:text-purple-600 transition-colors">{link.name}</Link></li>))}</ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Support</h3>
+            <ul className="space-y-2">{footerLinks.customer.map((link) => (<li key={link.name}><Link to={link.path} className="text-gray-600 hover:text-purple-600 transition-colors">{link.name}</Link></li>))}</ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Legal</h3>
+            <ul className="space-y-2">{footerLinks.legal.map((link) => (<li key={link.name}><Link to={link.path} className="text-gray-600 hover:text-purple-600 transition-colors">{link.name}</Link></li>))}</ul>
+          </div>
+        </div>
+
+        <div className="mb-12">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Join Our Newsletter</h3>
+            <p className="text-gray-600">Get exclusive offers, new arrivals, and shopping inspiration straight to your inbox.</p>
+          </div>
+          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-gray-900 placeholder-gray-400" />
+            <button type="submit" className="px-6 py-3 bg-purple-800 text-white rounded-md hover:bg-purple-700 font-semibold transition">Subscribe</button>
+          </form>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-purple-300">
+          <div className="flex items-center space-x-3 mb-4 md:mb-0">{socialLinks.map((social) => (<a key={social.label} href={social.href} aria-label={social.label} className="p-2 bg-purple-100 rounded-full hover:bg-purple-100 transition"><social.icon className="w-5 h-5 text-purple-600" /></a>))}</div>
+          <div className="text-center md:text-right">
+            <p className="text-gray-600 text-sm">© 2025 StoreApp. All rights reserved.</p>
+            <p className="text-gray-500 text-xs mt-1">Built with 🌵 by DevixRama</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
