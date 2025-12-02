@@ -7,6 +7,7 @@ import { toggleNavbar } from "../store/slices/extraSlice";
 const Header = () => {
 
   const { user } = useSelector(state => state.auth)
+
   const { openedComponent } = useSelector(state => state.extra)
   const dispatch = useDispatch()
 

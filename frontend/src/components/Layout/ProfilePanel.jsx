@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X, LogOut, Upload, Eye, EyeOff } from "lucide-react";
+import { X, LogOut, Upload, Eye, EyeOff, ArrowDown } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout, updatePassword, updateProfile } from "../../store/slices/authSlice";
 import { toggleAuthPopup } from "../../store/slices/popupSlice";
@@ -8,6 +8,8 @@ const ProfilePanel = () => {
   const dispatch = useDispatch();
   const { authUser, isUpdatingProfile, isUpdatingPassword } = useSelector((state) => state.auth);
   const { isAuthPopupOpen } = useSelector((state) => state.popup);
+
+  const [updatePassword, setUpdatePassword] = useState(false)
 
   const [name, setName] = useState(authUser?.name || "");
   const [email, setEmail] = useState(authUser?.email || "");
@@ -55,7 +57,7 @@ const ProfilePanel = () => {
         <div className="text-center mb-3"><h2 className="text-xl font-semibold text-gray-900">Profile</h2></div>
         <div className="flex flex-col items-center">
           <label htmlFor="avatar" className="relative cursor-pointer group">
-            <div className="w-20 h-20 rounded-full overflow-hidden border border-gray-300"><img src={authUser?.avatar?.url || "/avatar-holder.avif"} alt="avatar" className="w-full h-full object-cover rounded-full" /></div>
+            <div className="w-20 h-20 rounded-full overflow-hidden border border-gray-300"><img src={authUser?.avatar?.url || "/avatar.jpg"} alt="avatar" className="w-full h-full object-cover rounded-full" /></div>
             <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 rounded-full transition"><Upload className="text-white w-5 h-5" /></div>
           </label>
           <input id="avatar" type="file" accept="image/*" onChange={(e) => setAvatar(e.target.files[0])} className="hidden" />
@@ -71,13 +73,21 @@ const ProfilePanel = () => {
         </div>
         <div className="border-t my-3" />
         <div className="space-y-3">
-          <h3 className="text-sm font-medium text-center text-gray-700">Change Password</h3>
-          <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="Current Password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
-          <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
-          <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="Confirm New Password" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
+          <button className="flex text-center items-center gap-2 text-sm font-medium rounded p-3 text-white bg-black/60" onClick={()=>setUpdatePassword(true)}>Change Password < ArrowDown className="w-4 h-4" /></button>
+          {
+            updatePassword &&
+            <div>
+
+              <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="Current Password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
+              <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
+              <div className="relative"><input type={showPassword ? "text" : "password"} placeholder="Confirm New Password" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} className="w-full px-2 py-1.5 border rounded bg-transparent pr-8" /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 top-2 text-gray-500 rounded">{showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
+             
+              <button onClick={()=>setUpdatePassword(false)} disabled={isUpdatingPassword} className="w-1/3 bg-red-400 py-1 rounded my-3 mr-2 hover:scale-105 transition text-sm">Cacel</button>
+              <button onClick={handleUpdatePassword} disabled={isUpdatingPassword} className="w-1/3 bg-purple-500 text-white py-1 rounded my-3 hover:scale-105 transition text-sm">{isUpdatingPassword ? "Updating..." : "Update"}</button>
+            </div>
+          }
         </div>
-        <div className="flex gap-1 pt-4">
-          <button onClick={handleUpdatePassword} disabled={isUpdatingPassword} className="w-1/2 bg-purple-500 text-white py-1.5 rounded hover:bg-purple-600 transition disabled:opacity-60 text-sm">{isUpdatingPassword ? "Updating..." : "Update Password"}</button>
+        <div className="py-4">
           <button onClick={handleLogout} className="w-1/2 flex items-center justify-center gap-2 text-white border py-2 bg-red-500 rounded hover:bg-red-600 text-sm"><LogOut className="w-4 h-4" /> Logout</button></div>
       </div>
     </div>

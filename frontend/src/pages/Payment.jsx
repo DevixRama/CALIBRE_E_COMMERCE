@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, Package } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
@@ -57,18 +57,18 @@ const Payment = () => {
 
   if (cart.length === 0)
     return (
-      <div className="w-full h-screen flex items-center justify-center">
-        <div className="bg-white shadow rounded-md p-10 w-[90%] max-w-md text-center border border-purple-400">
-          <p className="text-purple-600 text-2xl font-bold mb-3">Your cart is empty</p>
-          <p className="text-gray-600 mb-4">You haven’t added anything yet.</p>
-          <Link to={"/products"} className="bg-purple-500 py-2 px-1 text-white rounded mb-2 text-sm">Explore our products</Link>
-        </div>
+      <div className="flex flex-col justify-center items-center py-12 rounded-md m-6 gap-2 bg-gray-50">
+        <Package className="w-10 h-10" />
+        <p className="text-gray-500 text-xl font-medium">Your cart is empty</p>
+        <p className="text-gray-500 text-sm">You haven’t added anything yet.</p>
+        <Link to={"/products"} className="bg-purple-500 py-2 px-1 text-white rounded m-2 text-sm">Explore our products</Link>
       </div>
     );
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
-      <Link to="/cart" className="flex items-center gap-2 text-purple-600 mb-4">
+
+      <Link to="/cart" className="flex items-center gap-2 mb-4">
         <ArrowLeft /> Back
       </Link>
 

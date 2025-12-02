@@ -5,56 +5,56 @@ const About = () => {
     {
       icon: Heart,
       title: 'Customer First',
-      description: 'We put our customers at the heart of everything we do.'
+      description: 'We prioritize our customers in every decision we make.'
     },
     {
       icon: Award,
-      title: 'Quality Products',
-      description: 'We ensure all products meet our high standards.'
+      title: 'Top Quality',
+      description: 'Every product meets our strict quality standards.'
     },
     {
       icon: Users,
-      title: 'Community',
-      description: 'Building lasting relationships with our customers.'
+      title: 'Community Focus',
+      description: 'We foster strong connections with our users and partners.'
     },
     {
       icon: Target,
       title: 'Innovation',
-      description: 'Constantly improving our platform and services.'
+      description: 'Continuously evolving our platform for a better experience.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-foreground mb-6">About ShopMate</h1>
-          <p className="text-xl text-muted-foreground">
-            Your trusted e-commerce platform for quality products and exceptional service.
+    <div className="min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        {/* Header */}
+        <header className="text-center mb-20">
+          <h1 className="text-5xl font-bold text-purple-600 mb-4">About Calibre</h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Calibre is your go-to online marketplace for premium products, innovative features, and a seamless shopping experience.
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Values Section */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
           {values.map((value, index) => (
-            <div key={index} className="bg-secondary rounded-xl p-6 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                <value.icon className="w-8 h-8 text-primary" />
+            <div key={index} className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center">
+              <div className="w-16 h-16 flex items-center justify-center mb-4 rounded-full bg-purple-100">
+                <value.icon className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">{value.title}</h3>
-              <p className="text-muted-foreground">{value.description}</p>
+              <h3 className="text-2xl font-semibold mb-2">{value.title}</h3>
+              <p className="text-gray-600">{value.description}</p>
             </div>
           ))}
-        </div>
+        </section>
 
-        <div className="bg-secondary rounded-xl p-8">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Our Story</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Founded with a vision to make online shopping simple and enjoyable, ShopMate has grown 
-            to become a trusted platform for thousands of customers worldwide. We believe that 
-            everyone deserves access to quality products at fair prices, backed by exceptional 
-            customer service.
+        {/* Story Section */}
+        <section className="bg-purple-50 rounded-xl p-12">
+          <h2 className="text-3xl font-bold text-purple-700 mb-6">Our Journey</h2>
+          <p className="text-gray-700 leading-relaxed text-lg">
+            Founded with a mission to make shopping effortless and enjoyable, Calibre has grown into a trusted platform serving thousands of happy customers worldwide. Our commitment to quality, innovation, and community drives everything we do. Join us as we continue to redefine the online shopping experience.
           </p>
-        </div>
+        </section>
       </div>
     </div>
   );

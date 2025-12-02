@@ -11,7 +11,7 @@ const LoginModal = () => {
   const { isAuthPopupOpen } = useSelector((state) => state.popup);
   const { authUser, isSigningUp, isLoggingIn, isRequestingForToken } = useSelector((state) => state.auth);
   const [mode, setMode] = useState("signIn");
-  const [formData, setFormData] = useState({ name: "", email: "royrahulraj54321@gmail.com", password: "88888888", confirmPassword: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
 
   useEffect(() => {
     if (location.pathname.startsWith("/password/reset")) {

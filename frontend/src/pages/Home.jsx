@@ -11,7 +11,7 @@ const Index = () => {
     (state) => state.product
   );
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mx-auto max-w-7xl">
       <HeroSlider />
       <div className="container mx-auto px-4 pt-20">
         <CategoryGrid />

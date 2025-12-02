@@ -124,6 +124,8 @@ GROUP BY
 
 
 export const fetchMyOrders = async (req, res) => {
+    console.log(req.user.id);
+    
     const result = await database.query(
         `
         SELECT o.*, COALESCE(
@@ -151,8 +153,7 @@ json_build_object(
  FROM orders o
  LEFT JOIN order_items oi ON o.id = oi.order_id
  LEFT JOIN shipping_info s ON o.id = s.order_id
-WHERE o.buyer_id = $1
---AND o.paid_at IS NOT NULL
+WHERE o.buyer_id = $1 AND o.paid_at IS NOT NULL
 GROUP BY o.id, s.id
         `,
         [req.user.id]
@@ -191,7 +192,7 @@ export const fetchAllOrders = async (req, res) => {
 FROM orders o
 LEFT JOIN order_items oi ON o.id = oi.order_id
 LEFT JOIN shipping_info s ON o.id = s.order_id
--- WHERE o.paid_at IS NOT NULL
+WHERE o.paid_at IS NOT NULL
 GROUP BY o.id, s.id
         `);
 

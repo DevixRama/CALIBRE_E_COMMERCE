@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="bg-white-50 flex items-center justify-between px-12 py-4 shadow-lg h-20">
+    <nav className="bg-white-50 mx-auto max-w-7xl flex items-center justify-between px-12 py-4 shadow-md mb-4 h-20">
       <div className="flex items-center gap-8">
         <Menu onClick={() => dispatch(toggleSidebar())} className="w-6 h-6 cursor-pointer" />
         <Search onClick={() => dispatch(toggleSearchBar())} className="w-6 h-6 cursor-pointer" />

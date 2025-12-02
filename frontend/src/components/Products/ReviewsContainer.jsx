@@ -32,7 +32,7 @@ const ReviewsContainer = ({ product, productReviews }) => {
           {productReviews.map((review) => (
             <div key={review.review_id} className="p-2 border rounded-md">
               <div className="flex items-center space-x-4 mb-4">
-                <img src={review.reviewer?.avatar?.url || "/avatar-holder.avif"} alt={review?.reviewer?.name || "User"} className="w-10 h-10 rounded-full object-cover" />
+                <img src={review.reviewer?.avatar?.url || "/avatar.jpg"} alt={review?.reviewer?.name || "User"} className="w-10 h-10 rounded-full object-cover" />
                 <div className="flex-1">
                   <div className="flex items-center space-x-4 mb-1">
                     <h4 className="text-sm font-semibold">{review?.reviewer?.name || "Anonymous"}</h4>

@@ -7,19 +7,21 @@ const Stats = () => {
   const [revenueChange, setRevenueChange] = useState("");
   const { totalRevenueAllTime, yesterdayRevenue, todayRevenue, totalUsersCount } = useSelector((state) => state.admin);
 
-
-  useEffect(() => {
-    const change = yesterdayRevenue === 0 ? 100 : ((todayRevenue - yesterdayRevenue) / yesterdayRevenue) * 100;
-    const revenueText = `${change > 0 ? "+" : "-"}${change.toFixed(2)}% from to yesterday`;
-    setRevenueChange(revenueText);
-  }, []);
-
-
   const stats = [
     { title: "Today's Revenue", value: formatNumber(todayRevenue), change: revenueChange },
     { title: "Total Users", value: totalUsersCount || 0, change: null },
     { title: "All Time Revenue", value: formatNumber(totalRevenueAllTime), change: null }
   ];
+
+  useEffect(() => {
+    if (yesterdayRevenue) {
+      const change = yesterdayRevenue === 0 ? 100 : ((todayRevenue - yesterdayRevenue) / yesterdayRevenue) * 100;
+      const revenueText = `${change > 0 ? "+" : "-"}${change.toFixed(2)}% from to yesterday`;
+      setRevenueChange(revenueText);
+    }
+  }, [yesterdayRevenue]);
+
+
 
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">

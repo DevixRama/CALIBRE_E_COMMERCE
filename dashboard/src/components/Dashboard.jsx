@@ -9,7 +9,7 @@ import TopProductsChart from "./dashboard-components/TopProductsChart";
 
 export default function Dashboard() {
   return (
-    <div className="w-full max-h-screen bg-purple-50 px-12 py-3 flex flex-col">
+    <div className="w-full max-h-screen px-12 py-3 flex flex-col">
       <Header />
 
 

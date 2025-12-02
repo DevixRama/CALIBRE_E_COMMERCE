@@ -35,7 +35,7 @@ const Products = () => {
 
 
   return (
-    <div className="max-h-screen px-12 py-3 w-full bg-gray-100 flex flex-col">
+    <div className="max-h-screen px-12 py-3 w-full flex flex-col">
       <Header />
 
       <div className="p-6 w-full mx-auto space-y-6">
@@ -116,8 +116,8 @@ const Products = () => {
                     <td className="p-3">{product.ratings || "-"}</td>
                     <td className="p-3 flex gap-2">
 
-                      <button className="px-3 py-1 bg-green-600 text-white rounded-lg disabled:opacity-50" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(toggleUpdateProductModal()) }}>Edit</button>
-                      <button className="px-3 py-1 bg-red-600 text-white rounded-lg disabled:opacity-50" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(deleteProduct(product.id)); }}>{selectedProduct?.id === product.id &&  loading ? "Deleting..." : "Delete"}</button>
+                      <button className="px-3 py-1 text-green-600 bg-purple-50 rounded hover:scale-105 transition-all" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(toggleUpdateProductModal()) }}>Edit</button>
+                      <button className="px-3 py-1 text-red-600 bg-purple-50 rounded hover:scale-105 transition-all" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(deleteProduct(product.id)); }}>{selectedProduct?.id === product.id &&  loading ? "Deleting..." : "Delete"}</button>
 
                     </td>
                   </tr>

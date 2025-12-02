@@ -25,8 +25,8 @@ const ResetPassword = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white p-6 rounded shadow-md">
         <h2 className="text-2xl font-semibold text-purple-600 text-center mb-6">Reset Password</h2>
-        <input type="password" placeholder="New Password" className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:border-purple-500" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-        <input type="password" placeholder="Confirm Password" className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:border-purple-500" value={formData.confirmPassword} onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} />
+        <input type="password" placeholder="New Password" className="w-full border border-gray-200 rounded px-3 py-2 mb-4 focus:outline-none" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+        <input type="password" placeholder="Confirm Password" className="w-full border border-gray-200 rounded px-3 py-2 mb-4 focus:outline-none" value={formData.confirmPassword} onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} />
         <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded transition">
           {loading ? "Processing..." : "Reset Password"}
         </button>

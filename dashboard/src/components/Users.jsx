@@ -13,6 +13,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(fetchAllUsers(page));
+    
   }, [dispatch, page]);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Users = () => {
   };
 
   return (
-    <div className="max-h-screen w-full px-12 py-3 bg-gray-100 flex flex-col">
+    <div className="max-h-screen w-full px-12 py-3 flex flex-col">
       <Header />
       <div className="p-4 w-full max-w-8xl h-full mx-auto">
         <h1 className="text-3xl font-bold text-purple-600 mb-4">Users</h1>
@@ -62,10 +63,10 @@ const Users = () => {
                     <td colSpan="5" className="text-center py-6">Loading...</td>
                   </tr>
                 ) : users?.length > 0 ? (
-                  users.map((user) => (
-                    <tr key={user.id} className="border-b">
+                  users.map((user, index) => (
+                    <tr key={index} className="border-b">
                       <td className="p-3">
-                        <img src={user.avatar || avatar} className="w-12 h-12 rounded-full" />
+                        <img src={user?.avatar?.url || avatar} className="w-12 h-12 rounded-full" />
                       </td>
                       <td className="p-3">{user.name}</td>
                       <td className="p-3">{user.email}</td>

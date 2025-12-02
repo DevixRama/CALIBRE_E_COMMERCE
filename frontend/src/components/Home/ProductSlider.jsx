@@ -19,8 +19,8 @@ const ProductSlider = ({ title, products }) => {
       </div>
 
       <div ref={scrollRef} className="flex space-x-6 overflow-x-auto pb-4 scrollbar-hide">
-        {products.map((product) => (
-          <ProductCard product={product} />
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
       </div>
     </section>

@@ -13,9 +13,7 @@ import productRouter from './router/productRoutes.js'
 import adminRouter from './router/adminRoutes.js'
 import orderRouter from './router/orderRoutes.js'
 import Stripe from 'stripe';
-
 import database from './database/db.js';
-
 
 
 app.use(cors({
@@ -27,44 +25,75 @@ app.use(cors({
 
 //IMPORTANT
 // --------->>>>>>>> Receive Stripe events in your webhook endpoint (search this on stripe doc to get this function and modify according to your use.) <<<<<<<<-----------
-app.post("/api/v1/payment/webhook", express.raw({ type: "application/json" }), async (req, res) => {
-    const sign = req.headers["stripe-signature"];
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+app.post("/api/v1/payment/webhook",
+    express.raw({ type: "application/json" }),
+    async (req, res) => {
+    console.log("line 35");
+    
+    
+    const signature = req.headers["stripe-signature"];
     let event;
+    
     try {
-        event = Stripe.webhooks.constructEvent(req.body, sign, process.env.STRIPE_WEBHOOK_SECRET)
-    } catch (error) {
-        return res.status(400).send(`webhook Error: ${error.message || error}`)
+        event = stripe.webhooks.constructEvent(
+            req.body,
+            signature,
+            process.env.STRIPE_WEBHOOK_SECRET
+        );
+    } catch (err) {
+        return res.status(400).send(`Webhook Error: ${err.message}`);
     }
-
-    // handling the Event
+    
+    console.log("line 51");
     if (event.type === "payment_intent.succeeded") {
-        const paymentIntent_client_secret = event.data.object.client_secret;
+        const paymentIntentId = event.data.object.id;
+        
+        console.log("line 55");
         try {
-            // FINDING AND UPDATED PAYMENT
-            const updatedPaymentStatus = "Paid";
-            const paymentTableUpdateResult = await database.query(`UPDATE payments SET payment_status = $1 WHERE payment_intent_id = $2 RETURNING *`, [updatedPaymentStatus, paymentIntent_client_secret]);
+            const updatedPayment = await database.query(
+                `UPDATE payments SET payment_status = $1 WHERE payment_intent_id = $2 RETURNING *`,
+                ["Paid", paymentIntentId]
+            );
+            
+            console.log("line 62");
+            if (updatedPayment.rows.length === 0) {
+                return res.status(200).send({ received: true });
+            }
+            
+            const orderId = updatedPayment.rows[0].order_id;
+            
+            console.log("line 69");
+            await database.query(
+                `UPDATE orders SET paid_at = NOW() WHERE id = $1`,
+                [orderId]
+            );
+            console.log("line 74");
 
-            const orderTableUpdateResult = await database.query(`UPDATE orders SET paid_at = NOW() WHERE id = $1 RETURNING *`, [paymentTableUpdateResult.rows[0].order_id]);
+            const { rows: orderedItems } = await database.query(
+                `SELECT product_id, quantity FROM order_items WHERE order_id = $1`,
+                [orderId]
+            );
 
-            //reduce Stock for Each Product
-            const orderId = paymentTableUpdateResult.rows[0].order_id;
-
-            const { rows: orderedItems } = await database.query(`SELECT product_id, quantity FROM order_items WHERE order_id = $1`, [orderId])
-            console.log("this log from the file app.js. inside the payment webhook \n" + orderedItems);
-
-            // FOR EACH ORDER ITEM SELLS, REDUCE THE PRODUCT STOCK
             for (const item of orderedItems) {
-                await database.query(`UPDATE products SET Stock = stock - $1 WHERE id = $2`, [item.quantity, item.product._id])
+                await database.query(
+                    `UPDATE products SET stock = stock - $1 WHERE id = $2`,
+                    [item.quantity, item.product_id]
+                );
             }
 
-        } catch (error) {
-            return res.status(500).send(`Error updating paid_at TIMESTAMP in orders table.`)
+        } catch {
+            return res.status(500).send("Webhook internal error");
         }
     }
 
     res.status(200).send({ received: true });
+});
 
-})
+
+
+
 
 
 app.use(fileUpload({

@@ -27,7 +27,7 @@ const AISearchModal = () => {
 
 return (
   <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div className="bg-background/95 backdrop-blur-md border border-border rounded-2xl p-8 w-full max-w-2xl">
+    <div className="bg-white backdrop-blur-md border border-border rounded-2xl p-8 w-full max-w-2xl">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center"><Sparkles className="w-5 h-5 text-white" /></div>
@@ -41,7 +41,7 @@ return (
       <form onSubmit={handleSearchWithAI} className="space-y-6">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-          <input type="text" placeholder="e.g., 'A wireless headphone for gaming with good bass'" value={userPrompt} onChange={(e) => setUserPrompt(e.target.value)} className="w-full pl-12 pr-4 py-4 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground" required autoFocus />
+          <input type="text" placeholder="e.g., 'A wireless headphone for gaming with good bass'" value={userPrompt} onChange={(e) => setUserPrompt(e.target.value)} className="w-full pl-12 pr-4 py-4 bg-secondary border border-border rounded-lg focus:outline-none text-foreground placeholder-muted-foreground" required />
         </div>
 
         <button type="submit" disabled={aiSearching || !userPrompt.trim()} className={`w-full py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 ${aiSearching && "animate-pulse"}`}>

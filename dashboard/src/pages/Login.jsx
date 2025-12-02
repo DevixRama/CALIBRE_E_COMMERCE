@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md bg-white rounded shadow-lg p-8">
-        <h1 className="text-2xl font-semibold text-purple-700 mb-6 text-center">Admin Login</h1>
+        <h1 className="text-2xl font-bold text-purple-900 mb-6 text-center">Admin Login</h1>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <label className="block">
@@ -36,7 +36,7 @@ export default function Login() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
-              className="mt-1 p-2 block w-full rounded border-gray-200 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 p-2 w-full rounded border border-gray-200 shadow-sm"
               placeholder="Email"
             />
           </label>
@@ -48,14 +48,14 @@ export default function Login() {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               required
-              className="mt-1 block p-2 w-full rounded border-gray-200 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 block p-2 w-full rounded border border-gray-200 shadow-sm"
               placeholder="Enter your password"
             />
           </label>
 
-          <div className="px-2 flex justify-between items-center text-sm text-gray-500">
+          <div className="px-2 flex justify-between items-center text-sm">
             <div className="flex items-center space-x-2">
-              <input type="checkbox" id="remember" className="w-4 h-4" />
+              <input type="checkbox" id="remember" required className="w-4 h-4" />
               <label htmlFor="remember">Remember me</label>
             </div>
 
@@ -66,15 +66,15 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full py-2 rounded bg-gradient-to-r from-purple-600 to-purple-500 text-white font-medium shadow-sm hover:opacity-95"
+            className="w-full py-2 rounded bg-purple-600 text-white font-medium transition-all shadow-sm hover:scale-105"
           >
             Sign in
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-500">
+        {/* <p className="mt-6 text-center text-sm text-gray-500">
           Need an account? <Link to="/register" className="text-purple-600 hover:underline">Sign up</Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

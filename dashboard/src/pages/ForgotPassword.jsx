@@ -25,11 +25,11 @@ export default function ForgotPassword() {
           <label className="block">
             <span className="text-sm text-gray-600">Email Address</span>
           </label>
-          <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 p-2 block w-full rounded border-gray-200 shadow-sm focus:border-purple-500 focus:ring-purple-500" placeholder="Enter your email" />
+          <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 p-2 block w-full rounded border border-gray-200 shadow-sm focus:outline-none" placeholder="Enter your email" />
           <p className="mt-6 text-end text-sm text-gray-500">
             <Link to="/login" className="text-purple-600 hover:underline">Remember password?</Link>
           </p>
-          <button type="submit" disabled={loading} className="w-full py-2 rounded bg-gradient-to-r from-purple-600 to-purple-500 text-white font-medium shadow-sm hover:opacity-95 disabled:opacity-50">
+          <button type="submit" disabled={loading} className="w-full py-2 rounded bg-purple-600 text-white font-medium shadow-sm hover:scale-105">
             {loading ? "Sending..." : "Send Reset Link"}
           </button>
         </form>

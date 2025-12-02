@@ -34,7 +34,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUser())
-  }, [dispatch])
+  }, [])
 
 
   useEffect(() => {

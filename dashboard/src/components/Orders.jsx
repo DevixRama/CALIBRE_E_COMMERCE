@@ -239,7 +239,7 @@ export default function Orders() {
   }
 
   return (
-    <div className="max-h-screen w-full px-12 py-3 bg-gray-50">
+    <div className="max-h-screen w-full px-12 py-3">
       <Header />
       <div className="max-w-7xl mx-auto mt-6">
         <div className="flex items-center justify-between mb-4">

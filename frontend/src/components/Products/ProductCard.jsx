@@ -10,12 +10,12 @@ const ProductCard = ({ product }) => {
   const handleAddToCart = (product, e) => { e.preventDefault(); e.stopPropagation(); dispatch(addToCart({ product, quantity: 1 })); };
 
   return (
-    <Link key={product.id} to={`/product/${product.id}`} className="flex flex-col justify-around flex-shrink-0 w-64 bg-white border border-gray-200 rounded-md px-4 py-2 shadow-sm hover:shadow-md transition group">
+    <Link to={`/product/${product.id}`} onClick={() => scrollTo(0,0)} className="flex flex-col justify-around flex-shrink-0 w-[14rem] max-h-[18rem] bg-white border border-gray-200 rounded-md px-4 py-2 shadow-sm hover:shadow-md transition group">
 
       <div className="relative overflow-hidden rounded-lg mb-4">
         <img src={product.images[0]?.url} alt={product.name} className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300" />
 
-        <div className="absolute top-3 left-3 flex flex-col space-y-2">
+        <div className="absolute top-3 left-3 flex flex-col space-y-1">
           {new Date() - new Date(product.created_at) < 30 * 24 * 60 * 60 * 1000 && (<span className="px-2 py-1 bg-purple-600 text-white text-xs font-semibold rounded">NEW</span>)}
           {product.ratings >= 4.5 && (<span className="px-2 py-1 bg-gradient-to-r from-yellow-400 to-pink-500 text-white text-xs font-semibold rounded">TOP RATED</span>)}
         </div>

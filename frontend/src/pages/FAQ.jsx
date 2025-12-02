@@ -6,20 +6,20 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: 'How do I place an order?',
-      answer: 'Simply browse our products, add items to your cart, and proceed to checkout. Follow the prompts to complete your order.'
+      question: 'How can I start shopping on Calibre?',
+      answer: 'Create an account or log in, browse our collections, add items to your cart, and checkout securely with ease.'
     },
     {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards, PayPal, and other secure payment methods.'
+      question: 'Which payment options are available?',
+      answer: 'We support credit/debit cards, PayPal, and other trusted payment methods to ensure a smooth checkout experience.'
     },
     {
-      question: 'How long does shipping take?',
-      answer: 'Standard shipping takes 3-5 business days. Express shipping options are available at checkout.'
+      question: 'When will my order arrive?',
+      answer: 'Standard delivery usually takes 3-5 business days, while express shipping is available for faster delivery.'
     },
     {
-      question: 'What is your return policy?',
-      answer: 'We offer a 30-day return policy for most items. Items must be in original condition with tags attached.'
+      question: 'Can I return a product?',
+      answer: 'Yes! You can return items within 30 days if they are in original condition with tags attached. Some exclusions may apply.'
     }
   ];
 
@@ -31,35 +31,47 @@ const FAQ = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-3xl mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl text-muted-foreground">Find answers to common questions</p>
-        </div>
+    <div className="min-h-screen mx-auto max-w-7xl">
+      <div className="max-w-6xl mx-auto px-6 py-10">
+        {/* Header */}
+        <header className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-purple-600 mb-3">Calibre Help Center</h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Answers to your most common questions to help you shop with confidence.
+          </p>
+        </header>
 
-        <div className="space-y-4">
+        {/* FAQ Section */}
+        <section className="space-y-5">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-secondary rounded-xl overflow-hidden">
+            <div key={index} className="bg-white group rounded-xl shadow-sm overflow-hidden">
               <button
                 onClick={() => toggleItem(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-primary/10 transition-colors"
+                className="w-full px-6 py-4 flex items-center justify-between transition-colors"
               >
-                <h3 className="font-semibold text-foreground">{faq.question}</h3>
+                <h3 className="font-semibold text-gray-900">{faq.question}</h3>
                 {openItems[index] ? (
-                  <ChevronUp className="w-5 h-5 text-foreground" />
+                  <ChevronUp className="w-5 h-5 text-purple-600 group-hover:scale-125" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-foreground" />
+                  <ChevronDown className="w-5 h-5 text-purple-600 group-hover:scale-125" />
                 )}
               </button>
               {openItems[index] && (
                 <div className="px-6 pb-4">
-                  <p className="text-muted-foreground">{faq.answer}</p>
+                  <p className="text-gray-700">{faq.answer}</p>
                 </div>
               )}
             </div>
           ))}
-        </div>
+        </section>
+
+        {/* Extra Info Section */}
+        <section className="mt-16 bg-purple-50 p-8 rounded-xl text-center">
+          <h2 className="text-2xl font-bold text-purple-700 mb-3">Need More Help?</h2>
+          <p className="text-gray-700">
+            If you can’t find the answer you’re looking for, reach out to our support team. We’re here to make your Calibre experience seamless and enjoyable.
+          </p>
+        </section>
       </div>
     </div>
   );

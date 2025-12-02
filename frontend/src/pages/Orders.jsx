@@ -41,7 +41,7 @@ const Orders = () => {
   if (!authUser) { navigate("/products"); return null; }
 
   return (
-    <div className="px-4 py-6 max-w-4xl mx-auto">
+    <div className="px-4 py-6 max-w-6xl mx-auto">
       <h1 className="text-2xl font-semibold mb-5">My Orders</h1>
 
       <div className="flex items-center gap-3 mb-6">
@@ -56,9 +56,9 @@ const Orders = () => {
         {
           filterOrders.length === 0
             ? (
-              <div className="flex flex-col justify-center items-center py-16 rounded-md gap-1 bg-slate-100">
+              <div className="flex flex-col justify-center items-center py-6 h-[60vh] rounded-md gap-2 bg-gray-50">
                 <Package className="w-10 h-10" />
-                <p className="text-gray-500 text-2xl font-bold">No orders found.</p>
+                <p className="text-gray-500 text-2xl font-medium">No orders found.</p>
                 <p className="text-gray-500 text-sm">No order with status "{statusFilter}" found.</p>
               </div>
             )
