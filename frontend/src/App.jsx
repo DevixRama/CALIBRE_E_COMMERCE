@@ -56,10 +56,10 @@ const App = () => {
   return (
     <>
         <BrowserRouter>
-          <div className="min-h-screen mx-10 bg-background">
+          <div className="min-h-screen mx-4 md:mx-10">
             <Navbar />
-            <Sidebar />
             <SearchOverlay />
+            <Sidebar />
             <CartSidebar />
             <LoginModal />
             <ProfilePanel />

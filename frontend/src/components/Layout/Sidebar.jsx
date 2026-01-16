@@ -19,9 +19,11 @@ const Sidebar = () => {
     authUser && { name: "My Orders", icon: List, path: "/orders" },
   ];
 
+  if (!isSidebarOpen) return null;
+
   return (
-    <>
-      <div className={`fixed top-0 left-0 h-full w-64 shadow-lg transform transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-white text-gray-900 z-50`}>
+    <div className="fixed inset-0 z-10" onClick={() => dispatch(toggleSidebar())}>
+      <div className={`absolute top-0 left-0 h-full w-44 md:w-64 shadow-lg transform transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-white text-gray-900 z-50`} onClick={(e) => e.stopPropagation()} >
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-bold">Menu</h2>
           <button onClick={() => dispatch(toggleSidebar())} className="p-1 rounded-md hover:bg-gray-100"><X className="w-5 h-5" /></button>
@@ -34,7 +36,7 @@ const Sidebar = () => {
           ))}
         </nav>
       </div>
-    </>
+    </div>
   );
 };
 

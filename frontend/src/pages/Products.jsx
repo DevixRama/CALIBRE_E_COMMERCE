@@ -45,7 +45,7 @@ const Products = () => {
           <button onClick={() => setIsMobileFilterOpen(false)} className="w-full md:hidden py-2 bg-purple-600 text-white rounded-lg">Apply Filters</button>
         </aside>
 
-        <div className="mx-auto w-full h-full flex-col">
+        <div className="mx-auto w-full bg-red-900 h-full flex-col">
           <div className="flex items-center justify-between gap-8 mb-6">
             <h1 className="text-2xl font-bold">Products</h1>
             <div className="">

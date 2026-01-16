@@ -29,9 +29,9 @@ const HeroSlider = () => {
 
       {/* Content */}
       <div className="relative h-full flex flex-col items-center justify-center text-center px-6 text-white animate-fade-in-up">
-        <h3 className="text-lg md:text-xl font-mono mb-3 tracking-wide uppercase">{slide.subtitle}</h3>
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">{slide.title}</h1>
-        <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">{slide.description}</p>
+        <h3 className="text-md md:text-xl font-mono mb-3 tracking-wide uppercase">{slide.subtitle}</h3>
+        <h1 className="text-4xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">{slide.title}</h1>
+        <p className="text-md md:text-xl text-gray-200 mb-8 max-w-2xl">{slide.description}</p>
         <Link to={slide.url} className="px-8 py-4 bg-purple-800 text-white rounded-s-mdYes.  shadow-md hover:shadow-lg hover:scale-105 transition-transform font-semibold">
           {slide.cta}
         </Link>
