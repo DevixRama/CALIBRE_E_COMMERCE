@@ -17,7 +17,7 @@ const Navbar = () => {
         <Search onClick={() => dispatch(toggleSearchBar())} className="w-6 h-6 cursor-pointer" />
       </div>
 
-      <h2 className="text-4xl font-bold">Store App</h2>
+      <h2 className="text-4xl font-bold">Calibre</h2>
 
       <div className="flex items-center gap-8">
         <User onClick={() => dispatch(toggleAuthPopup())} className="w-6 h-6 cursor-pointer" />

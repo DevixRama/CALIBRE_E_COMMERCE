@@ -7,7 +7,10 @@ import { fetchProductDetails } from "../store/slices/productSlice";
 import { addToCart } from "../store/slices/cartSlice";
 import { toast } from "react-toastify";
 
+
 const ProductDetail = () => {
+  const [params] = useSearchParams()
+  const tab = params.get("tab")
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -33,6 +36,14 @@ const ProductDetail = () => {
     const currentURL = window.location.href
     navigator.clipboard.writeText(currentURL).then(() => toast.success("URL copied", currentURL)).catch((err) => toast.error("Failed to copy", err))
   }
+
+
+  useEffect(() => {
+    if (tab) {
+      setActiveTab(tab)
+    }
+  }, [tab])
+  
 
 
   useEffect(() => {
@@ -100,6 +111,7 @@ const ProductDetail = () => {
       {activeTab === "Description" && (<div className="text-gray-700 leading-relaxed">{productDetails.description}</div>)}
 
       {activeTab === "Reviews" && (<ReviewsContainer product={productDetails} productReviews={productReviews} />)}
+
 
     </div>
   );

@@ -9,10 +9,10 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 export async function generatePaymentIntent(orderId, totalPrice) {
     try {
         const paymentIntent = await stripe.paymentIntents.create({
-            // amount: Math.round(totalPrice * 100),
-            // currency: "inr",
-            amount: totalPrice * 100,
-            currency: "usd",
+            amount: Math.round(totalPrice * 100),
+            currency: "inr",
+            // amount: totalPrice * 100,
+            // currency: "usd",
         });
 
         await database.query(

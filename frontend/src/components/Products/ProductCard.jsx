@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
           <span className="text-sm text-gray-500">({product.ratings})</span>
         </div>
 
-        <div className="flex items-center space-x-2"><span className="text-xl font-bold text-purple-600">${product.price}</span></div>
+        <div className="flex items-center space-x-2"><span className="text-xl font-bold text-purple-600">₹{product.price}</span></div>
 
       </div>
       <div><span className={`text-xs px-2 py-1 rounded ${product.stock > 5 ? "bg-green-100 text-green-600" : product.stock > 0 ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"}`}>{product.stock > 5 ? "In Stock" : product.stock > 0 ? "Limited Stock" : "Out of Stock"}</span></div>

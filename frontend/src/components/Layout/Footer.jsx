@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <h2 className="text-2xl font-bold text-purple-600 mb-4">ShopMate</h2>
+            <h2 className="text-2xl font-bold text-purple-600 mb-4">Calibre</h2>
             <p className="text-gray-600 mb-6">Your go-to destination for premium online shopping. Explore quality, value, and style in one place.</p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-gray-700"><Mail className="w-5 h-5 text-purple-600" /><span>support@shopmate.com</span></div>

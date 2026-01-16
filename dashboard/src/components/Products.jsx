@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LoaderCircle, Plus, ChevronLeft, ChevronRight } from "lucide-react";
+import { LoaderCircle, Plus, ChevronLeft, ChevronRight, Trash2  } from "lucide-react";
 import CreateProductModal from "../modals/CreateProductModal";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
@@ -88,7 +88,7 @@ const Products = () => {
           </div>
         </div> */}
 
-        <div className="bg-white rounded-xl h-[66vh] shadow p-4 overflow-x-auto">
+        <div className="bg-white rounded-xl h-[66vh] shadow overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b text-left bg-gray-50">
@@ -111,13 +111,13 @@ const Products = () => {
                   <tr key={product.id} onClick={()=> {setSelectedProduct(product); dispatch(toggleViewProductModal())}} className="border-b hover:bg-gray-50 transition">
                     <td className="p-3"><img src={product.images?.[0]?.url} alt={product.name} className="w-16 h-16 object-cover rounded-lg" /></td>
                     <td className="p-3 font-semibold">{product.name}</td>
-                    <td className="p-3 text-green-700 font-medium">${product.price}</td>
+                    <td className="p-3 text-green-700 font-medium">₹{product.price}</td>
                     <td className="p-3">{product.stock}</td>
                     <td className="p-3">{product.ratings || "-"}</td>
                     <td className="p-3 flex gap-2">
 
                       <button className="px-3 py-1 text-green-600 bg-purple-50 rounded hover:scale-105 transition-all" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(toggleUpdateProductModal()) }}>Edit</button>
-                      <button className="px-3 py-1 text-red-600 bg-purple-50 rounded hover:scale-105 transition-all" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(deleteProduct(product.id)); }}>{selectedProduct?.id === product.id &&  loading ? "Deleting..." : "Delete"}</button>
+                      <button className="px-3 py-1 text-red-600 bg-purple-50 rounded hover:scale-105 transition-all" onClick={(e) => { e.stopPropagation(); setSelectedProduct(product); dispatch(deleteProduct(product.id)); }}>{selectedProduct?.id === product.id &&  loading ? "Deleting..." : (<Trash2 className="w-5 h-5" />)}</button>
 
                     </td>
                   </tr>

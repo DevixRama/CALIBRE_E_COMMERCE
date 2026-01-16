@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchMyOrders } from "../store/slices/orderSlice";
 
-const Orders = () => {
+const Orders = ({active, setActiveTab}) => {
 
   const [statusFilter, setStatusFilter] = useState("All");
   const { myOrders } = useSelector((state) => state.order);
@@ -12,7 +12,8 @@ const Orders = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => { dispatch(fetchMyOrders()); }, [dispatch]);
+  useEffect(() => { dispatch(fetchMyOrders()); console.log(active);
+   }, [dispatch]);
 
   const filterOrders = myOrders?.filter((order) => statusFilter === "All" || order.order_status === statusFilter) || [];
 
@@ -99,8 +100,8 @@ const Orders = () => {
 
                     {order.order_status === "Delivered" && (
                       <>
-                        <button onClick={() => navigate(`/product/${order.order_items[0]?.product_id}`)} className="px-3 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">Write Review</button>
-                        <button onClick={() => navigate(`/product/${order.order_items[0]?.product_id}`)} className="px-3 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">Reorder</button>
+                        <button onClick={() => {navigate(`/product/${order.order_items[0]?.product_id}?tab=Reviews`); scrollTo(0,600)}} className="px-3 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">Write Review</button>
+                        <button onClick={() => {navigate(`/product/${order.order_items[0]?.product_id}`); scrollTo(0,0)}} className="px-3 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">Reorder</button>
                       </>
                     )}
 

@@ -198,7 +198,7 @@
 // Updated Orders component with shipping info added
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Loader } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import Header from "./Header";
 import { deleteOrder, fetchAllOrders, updateOrderStatus } from "../store/slices/orderSlice";
 
@@ -259,7 +259,7 @@ export default function Orders() {
           </div>
         </div>
 
-        <div className="overflow-x-auto bg-white rounded shadow">
+        <div className="overflow-x-auto max-h-[75vh] bg-white rounded shadow">
           <table className="min-w-full divide-y">
             <thead>
               <tr>
@@ -272,7 +272,7 @@ export default function Orders() {
                 <th className="px-4 py-2 text-left">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody className="divide-y overflow-y-auto">
               {filteredOrders?.length === 0 && (
                 <tr>
                   <td className="p-4 text-center" colSpan={7}>No orders found.</td>
@@ -306,7 +306,7 @@ export default function Orders() {
                       </div>
                     ))}
                   </td>
-                  <td className="px-4 py-3 align-top">${order.total_price}</td>
+                  <td className="px-4 py-3 align-top">₹{order.total_price}</td>
                   <td className="px-4 py-3 align-top">
                     <select className="border rounded px-2 py-1" value={selectStatus === order.id ? selectStatus : order.order_status} onChange={(e) => handleStatusChange(order.id, e.target.value)}>
                       <option value="Processing">Processing</option>
@@ -317,7 +317,7 @@ export default function Orders() {
                   </td>
                   <td className="px-4 py-3 align-top">
                     <div className="flex items-center gap-2">
-                      <button className="px-2 py-1 border rounded" onClick={() => setDeleteConfirm({ open: true, id: order.id })}>Delete</button>
+                      <button className="px-2 py-1 border rounded" onClick={() => setDeleteConfirm({ open: true, id: order.id })}><Trash2 className="w-5 h-5" /></button>
                       <button className="px-2 py-1 border rounded" onClick={() => setPreviewImage(order.order_items?.[0]?.image || null)}>Preview</button>
                     </div>
                   </td>

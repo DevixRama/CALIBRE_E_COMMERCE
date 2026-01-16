@@ -13,7 +13,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(fetchAllUsers(page));
-    
+
   }, [dispatch, page]);
 
   useEffect(() => {
@@ -41,22 +41,20 @@ const Users = () => {
       <div className="p-4 w-full max-w-8xl h-full mx-auto">
         <h1 className="text-3xl font-bold text-purple-600 mb-4">Users</h1>
 
-        <div className="bg-white rounded shadow">
-          <table className="w-full border-collapse">
-            <thead className="bg-purple-400 font-bold mb-2 py-2">
-              <tr className="border-b text-left">
-                <th className="p-3">Avatar</th>
-                <th className="p-3">Name</th>
-                <th className="p-3">Email</th>
-                <th className="p-3">Registered On</th>
-                <th className="p-3">Action</th>
-              </tr>
-            </thead>
-          </table>
+        <div className="bg-white overflow-y-auto w-full rounded shadow">
 
-          {/* Scrollable tbody */}
-          <div className="overflow-y-auto h-[63vh]">
+          <div className=" h-[65vh]">
+
             <table className="w-full border-collapse">
+              <thead className="bg-purple-400 font-bold text-left py-2">
+                <tr className="border-b">
+                  <th className="p-3">Avatar</th>
+                  <th className="p-3">Name</th>
+                  <th className="p-3">Email</th>
+                  <th className="p-3">Registered On</th>
+                  <th className="p-3">Action</th>
+                </tr>
+              </thead>
               <tbody>
                 {loading ? (
                   <tr>
@@ -76,7 +74,7 @@ const Users = () => {
                       <td className="p-3">
                         <button
                           onClick={() => handleDeleteUser(user.id)}
-                          className="px-4 py-2  bg-red-600 text-white rounded-md hover:bg-red-700"
+                          className="px-3 py-1  bg-red-600 text-white rounded-md hover:bg-red-700"
                         >
                           Delete
                         </button>

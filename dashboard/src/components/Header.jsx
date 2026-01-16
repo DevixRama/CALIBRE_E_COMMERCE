@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   return (
-    <header className="w-full flex items-center justify-between bg-white px-6 py-4 shadow-md">
+    <header className="w-full  flex items-center justify-between bg-white py-6 px-4 shadow-md">
       <div className="flex items-center gap-3">
         {/* <Menu className="size-6 text-purple-600 cursor-pointer" onClick={() => dispatch(toggleNavbar())} /> */}
         <h1 className="text-base font-bold">{openedComponent} / <span className="text-sm">{user?.name} </span> </h1>
