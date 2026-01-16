@@ -441,7 +441,7 @@ Building this comprehensive e-commerce platform provided invaluable learning exp
 
 ## 📸 Screenshots
 
-<!-- Add screenshots here -->
+<!-- soon -->
 - Home Page with Hero Slider and Categories
 - Product Listing Page with Filters
 - AI Search Modal in Action
@@ -456,12 +456,10 @@ Building this comprehensive e-commerce platform provided invaluable learning exp
 ## 🔗 Links
 
 ### 1. GitHub Repository
-<!-- Add your GitHub repository link here -->
-[GitHub Repository](#)
+[https://github.com/DevixRama/CALIBRE_E_COMMERCE](#)
 
 ### 2. Live Demo
-<!-- Add your live demo link here -->
-[Live Demo](#)
+[coming soon!](#)
 
 ## 🤝 Contributing
 
@@ -469,11 +467,11 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available for all of you
 
 ## 👤 Author
 
-Built with ❤️ by [Your Name]
+Built with ❤️ by Raman kumar.
 
 ---
 
